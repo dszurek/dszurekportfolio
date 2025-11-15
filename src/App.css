@@ -1,0 +1,85 @@
+.app {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+}
+
+main {
+  position: relative;
+  z-index: 1;
+}
+
+/* Glass morphism utility classes */
+.glass {
+  background: rgba(13, 13, 13, 0.4);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(212, 197, 185, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.glass-strong {
+  background: rgba(13, 13, 13, 0.7);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border: 1px solid rgba(212, 197, 185, 0.15);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+}
+
+.glass-light {
+  background: rgba(212, 197, 185, 0.05);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(212, 197, 185, 0.08);
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(
+    135deg,
+    var(--color-beige-light),
+    var(--color-leather-light),
+    var(--color-forest-light)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Smooth animations */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-pulse {
+  animation: pulse 4s ease-in-out infinite;
+}
