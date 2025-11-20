@@ -39,7 +39,7 @@ const Hero = ({ scrollY }) => {
       >
         <motion.div className="hero-badge" variants={itemVariants}>
           <span className="badge-dot"></span>
-          <span>Open for Software Engineering Roles</span>
+          <span>Open for Software Engineering & Data Roles</span>
         </motion.div>
 
         <motion.h1 className="hero-title" variants={itemVariants}>

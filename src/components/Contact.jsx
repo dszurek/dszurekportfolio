@@ -98,8 +98,8 @@ const Contact = () => {
           <span className="section-label">Get In Touch</span>
           <h2 className="section-title gradient-text">Contact Me</h2>
           <p className="section-description">
-            Open to software engineering opportunities in automotive, AI, and
-            tech
+            Open to software engineering and data opportunities in automotive,
+            AI, and tech
           </p>
         </motion.div>
 
@@ -113,9 +113,9 @@ const Contact = () => {
             <div className="info-card glass">
               <h3>Let's Connect</h3>
               <p>
-                I'm actively seeking software engineering opportunities in
-                autonomous vehicles, artificial intelligence, and tech. Open to
-                full-time roles, internships, and collaborative research
+                I'm actively seeking software engineering and data opportunities
+                in autonomous vehicles, artificial intelligence, and tech. Open
+                to full-time roles, internships, and collaborative research
                 projects. Whether you're a recruiter, researcher, or fellow
                 engineer, I'd love to hear from you!
               </p>
