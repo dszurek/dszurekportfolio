@@ -37,16 +37,32 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    setTimeout(() => {
-      setSubmitStatus("success");
-      setIsSubmitting(false);
-      setFormData({ name: "", email: "", subject: "", message: "" });
+    try {
+      // Encode form data for Netlify
+      const formElement = e.target;
+      const formData = new FormData(formElement);
 
+      const response = await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(formData).toString(),
+      });
+
+      if (response.ok) {
+        setSubmitStatus("success");
+        setFormData({ name: "", email: "", subject: "", message: "" });
+      } else {
+        setSubmitStatus("error");
+      }
+    } catch (error) {
+      console.error("Form submission error:", error);
+      setSubmitStatus("error");
+    } finally {
+      setIsSubmitting(false);
       setTimeout(() => {
         setSubmitStatus(null);
       }, 5000);
-    }, 2000);
+    }
   };
 
   const socialLinks = [
@@ -151,7 +167,22 @@ const Contact = () => {
             animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            <form onSubmit={handleSubmit} className="contact-form glass">
+            <form
+              name="contact"
+              method="POST"
+              data-netlify="true"
+              data-netlify-honeypot="bot-field"
+              onSubmit={handleSubmit}
+              className="contact-form glass"
+            >
+              <input type="hidden" name="form-name" value="contact" />
+              {/* Honeypot field for spam protection */}
+              <div style={{ display: "none" }}>
+                <label>
+                  Don't fill this out if you're human:{" "}
+                  <input name="bot-field" />
+                </label>
+              </div>
               <div className="form-group">
                 <label htmlFor="name">Your Name</label>
                 <input
@@ -231,6 +262,21 @@ const Contact = () => {
                   animate={{ opacity: 1, y: 0 }}
                 >
                   ✓ Message sent successfully! I'll get back to you soon.
+                </motion.div>
+              )}
+              {submitStatus === "error" && (
+                <motion.div
+                  className="error-message"
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  style={{
+                    color: "#ff6b6b",
+                    marginTop: "1rem",
+                    textAlign: "center",
+                  }}
+                >
+                  ✗ Failed to send message. Please try again or email me
+                  directly.
                 </motion.div>
               )}
             </form>

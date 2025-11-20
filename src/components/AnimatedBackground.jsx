@@ -10,87 +10,66 @@ const AnimatedBackground = ({ scrollY }) => {
     if (!canvas) return;
 
     const ctx = canvas.getContext("2d");
-    const dpr = window.devicePixelRatio || 1;
-
-    // CSS-pixel canvas dimensions (keep these in scope before resizeCanvas runs)
-    let cw = window.innerWidth;
-    let ch = window.innerHeight;
-    let rect = canvas.getBoundingClientRect();
-
-    const resizeCanvas = () => {
-      const w = window.innerWidth;
-      const h = window.innerHeight;
-      // keep CSS-pixel sizes in cw/ch so mouse coords and particle positions are in the same space
-      cw = w;
-      ch = h;
-      canvas.width = Math.floor(w * dpr);
-      canvas.height = Math.floor(h * dpr);
-      canvas.style.width = `${w}px`;
-      canvas.style.height = `${h}px`;
-      // set a transform so drawing ops use CSS pixels (1 user unit = 1 CSS pixel)
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      rect = canvas.getBoundingClientRect();
-    };
-    resizeCanvas();
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
 
     const particles = [];
-    const particleCount = 150;
+    const particleCount = 100;
     const mouse = {
       x: null,
       y: null,
-      radius: 80, // Smaller, tighter interaction zone
+      radius: 150,
     };
 
     class Particle {
       constructor() {
-        this.x = Math.random() * cw;
-        this.y = Math.random() * ch;
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
         this.size = Math.random() * 2 + 0.5;
         this.baseX = this.x;
         this.baseY = this.y;
         this.speedX = Math.random() * 0.5 - 0.25;
         this.speedY = Math.random() * 0.5 - 0.25;
         this.opacity = Math.random() * 0.5 + 0.2;
+        this.density = Math.random() * 30 + 1;
       }
 
       update() {
-        // Update base position with natural drift
+        // Move particles naturally
         this.baseX += this.speedX;
         this.baseY += this.speedY;
 
-        // Wrap edges
-        if (this.baseX > cw) this.baseX = 0;
-        if (this.baseX < 0) this.baseX = cw;
-        if (this.baseY > ch) this.baseY = 0;
-        if (this.baseY < 0) this.baseY = ch;
+        // Wrap around edges
+        if (this.baseX > canvas.width) this.baseX = 0;
+        if (this.baseX < 0) this.baseX = canvas.width;
+        if (this.baseY > canvas.height) this.baseY = 0;
+        if (this.baseY < 0) this.baseY = canvas.height;
 
-        // Start from base position each frame
-        let targetX = this.baseX;
-        let targetY = this.baseY;
-
-        // Apply mouse repulsion directly to ALL particles
+        // Mouse interaction
         if (mouse.x != null && mouse.y != null) {
-          // Check distance from BASE position to mouse
-          const dx = this.baseX - mouse.x;
-          const dy = this.baseY - mouse.y;
+          const dx = mouse.x - this.baseX;
+          const dy = mouse.y - this.baseY;
           const distance = Math.sqrt(dx * dx + dy * dy);
+          const forceDirectionX = dx / distance;
+          const forceDirectionY = dy / distance;
+          const maxDistance = mouse.radius;
+          const force = (maxDistance - distance) / maxDistance;
+          const directionX = forceDirectionX * force * this.density;
+          const directionY = forceDirectionY * force * this.density;
 
-          if (distance < mouse.radius && distance > 0) {
-            // Calculate repulsion - stronger when closer
-            const force = (mouse.radius - distance) / mouse.radius;
-            const pushStrength = force * force * 40; // Strong quadratic push
-
-            // Push away from mouse
-            const angle = Math.atan2(dy, dx);
-            targetX = this.baseX + Math.cos(angle) * pushStrength;
-            targetY = this.baseY + Math.sin(angle) * pushStrength;
+          if (distance < mouse.radius) {
+            this.x = this.baseX - directionX;
+            this.y = this.baseY - directionY;
+          } else {
+            // Smoothly return to base position
+            this.x += (this.baseX - this.x) * 0.05;
+            this.y += (this.baseY - this.y) * 0.05;
           }
+        } else {
+          // Return to base position when mouse is not on canvas
+          this.x = this.baseX;
+          this.y = this.baseY;
         }
-
-        // Smooth interpolation to target
-        const easing = 0.15;
-        this.x += (targetX - this.x) * easing;
-        this.y += (targetY - this.y) * easing;
       }
 
       draw() {
@@ -106,8 +85,7 @@ const AnimatedBackground = ({ scrollY }) => {
     }
 
     function animate() {
-      // clear using CSS pixel dimensions (user-space) so transform doesn't interfere
-      ctx.clearRect(0, 0, cw, ch);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       particles.forEach((particle) => {
         particle.update();
@@ -140,17 +118,13 @@ const AnimatedBackground = ({ scrollY }) => {
     animate();
 
     const handleResize = () => {
-      resizeCanvas();
-      // update cached dims and rect
-      cw = window.innerWidth;
-      ch = window.innerHeight;
-      rect = canvas.getBoundingClientRect();
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
     };
 
     const handleMouseMove = (e) => {
-      // Convert to canvas-local CSS pixels
-      mouse.x = e.clientX - rect.left;
-      mouse.y = e.clientY - rect.top;
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
     };
 
     const handleMouseLeave = () => {

@@ -5,14 +5,14 @@
   justify-content: center;
   position: relative;
   padding: 2rem;
+  padding-top: 6rem; /* Account for fixed navbar */
   overflow: hidden;
-  z-index: 2;
 }
 
 .hero-content {
   max-width: 1200px;
   text-align: center;
-  z-index: 10;
+  z-index: 2;
   position: relative;
 }
 
@@ -178,11 +178,19 @@
 @media (max-width: 768px) {
   .hero {
     padding: 1rem;
+    padding-top: 5rem; /* Adjusted for mobile navbar */
+  }
+
+  .hero-badge {
+    margin-bottom: 1.5rem;
+    font-size: 0.75rem;
+    padding: 0.5rem 1.2rem;
   }
 
   .hero-cta {
     flex-direction: column;
     align-items: center;
+    margin-bottom: 3rem;
   }
 
   .cta-button {

@@ -114,7 +114,7 @@ const About = () => {
             </div>
 
             <div className="intro-text">
-              <h3>Hello! I'm Daniel</h3>
+              <h3>Hey! I'm Daniel</h3>
               <p>
                 Accelerated Master's student in Computer Science leading
                 cutting-edge autonomous vehicle development at the University of
@@ -133,6 +133,12 @@ const About = () => {
                 cloud-based solutions. Passionate about applying machine
                 learning and intelligent systems to solve real-world challenges
                 in automotive and tech industries.
+              </p>
+              <p>
+                When I'm not coding, you can find me practicing my instrumental
+                music skills, traveling to new places, and reading (usually the
+                Dune series). Feel free to send me any song or book
+                recommendations in the contact section!
               </p>
             </div>
           </motion.div>
