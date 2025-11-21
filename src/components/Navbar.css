@@ -17,6 +17,13 @@
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
+.navbar.mobile-open {
+  background: rgba(10, 10, 10, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(212, 197, 185, 0.1);
+}
+
 .navbar-container {
   max-width: 1400px;
   margin: 0 auto;

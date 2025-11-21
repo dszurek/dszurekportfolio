@@ -21,7 +21,9 @@ const Navbar = ({ scrollY }) => {
 
   return (
     <motion.nav
-      className={`navbar ${isScrolled ? "scrolled" : ""}`}
+      className={`navbar ${isScrolled ? "scrolled" : ""} ${
+        isMobileMenuOpen ? "mobile-open" : ""
+      }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}

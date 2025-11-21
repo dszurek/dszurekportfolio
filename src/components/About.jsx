@@ -71,6 +71,43 @@ const About = () => {
     },
   ];
 
+  const favorites = {
+    music: [
+      {
+        title: "In Rainbows",
+        artist: "Radiohead",
+        cover: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/dd/50/c7/dd50c790-99ac-d3d0-5ab8-e3891fb8fd52/634904032463.png/100x100bb.jpg",
+      },
+      {
+        title: "Never Enough",
+        artist: "Daniel Caesar",
+        cover: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/24/4f/ec/244fec58-ea20-e0b0-eea6-e06c6aff948b/23UMGIM14483.rgb.jpg/100x100bb.jpg",
+      },
+      {
+        title: "Troupeau Bleu",
+        artist: "Cortex",
+        cover: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/72/9d/7a/729d7a9c-8b95-35e6-ac3d-7f54ce400ace/cover.jpg/100x100bb.jpg",
+      },
+    ],
+    books: [
+      {
+        title: "Dune Messiah",
+        author: "Frank Herbert",
+        cover: "https://is1-ssl.mzstatic.com/image/thumb/Publication113/v4/89/bc/8d/89bc8d21-8dd7-75a0-ea6e-8ae136e87318/9781101157879.jpg/100x100bb.jpg",
+      },
+      {
+        title: "Greatest Hits",
+        author: "Harlan Ellison",
+        cover: "https://is1-ssl.mzstatic.com/image/thumb/Publication221/v4/91/95/ac/9195ac34-4ad9-f76a-3f05-bb90b42f919c/9781454952121.jpg/100x100bb.jpg",
+      },
+      {
+        title: "Crime and Punishment",
+        author: "Fyodor Dostoevsky",
+        cover: "https://is1-ssl.mzstatic.com/image/thumb/Publication/v4/62/69/b2/6269b227-8903-9dcf-3b4a-e419853472bf/crime_and_punishment.jpg/100x100bb.jpg",
+      },
+    ],
+  };
+
   return (
     <section id="about" className="about" ref={sectionRef}>
       <div className="about-container" ref={ref}>
@@ -140,6 +177,40 @@ const About = () => {
                 Dune series). Feel free to send me any song or book
                 recommendations in the contact section!
               </p>
+
+              <div className="favorites-divider"></div>
+
+              <div className="about-favorites">
+                <div className="favorites-group">
+                  <h4>On Repeat</h4>
+                  <div className="favorites-row">
+                    {favorites.music.map((item, index) => (
+                      <div key={index} className="favorite-item">
+                        <img src={item.cover} alt={item.title} />
+                        <div className="favorite-details">
+                          <span className="song-title">{item.title}</span>
+                          <span className="song-artist">{item.artist}</span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                
+                <div className="favorites-group">
+                  <h4>Currently Reading</h4>
+                  <div className="favorites-row">
+                    {favorites.books.map((item, index) => (
+                      <div key={index} className="favorite-item">
+                        <img src={item.cover} alt={item.title} />
+                        <div className="favorite-details">
+                          <span className="song-title">{item.title}</span>
+                          <span className="song-artist">{item.author}</span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
             </div>
           </motion.div>
         </motion.div>

@@ -200,7 +200,7 @@
 @media (min-width: 768px) {
   .about-intro {
     grid-template-columns: auto 1fr;
-    align-items: center;
+    align-items: start;
   }
 
   .intro-image {
@@ -228,5 +228,112 @@
 
   .about-stats {
     grid-template-columns: 1fr;
+  }
+}
+
+/* Favorites Section */
+.about-favorites {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  display: flex;
+  gap: 3rem;
+}
+
+.favorites-group {
+  flex: 1;
+  min-width: 0;
+}
+
+.favorites-group h4 {
+  font-size: 1rem;
+  color: var(--color-beige-light);
+  margin-bottom: 1rem;
+  opacity: 0.9;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-family: "Inter", sans-serif; /* Ensure consistent font */
+}
+
+.favorites-row {
+  display: flex;
+  gap: 1rem;
+}
+
+.favorite-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100px;
+}
+
+.favorite-item img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.favorite-item:hover img {
+  transform: translateY(-3px);
+}
+
+.favorite-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.song-title {
+  font-size: 0.8rem;
+  color: var(--color-text-muted); /* Match biography text color */
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-family: "Inter", sans-serif;
+}
+
+.song-artist {
+  font-size: 0.7rem;
+  color: var(--color-text-muted);
+  opacity: 0.7;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-family: "Inter", sans-serif;
+}
+
+.favorites-divider {
+  width: 100%;
+  height: 1px;
+  background: rgba(212, 197, 185, 0.1);
+  margin: 1rem 0;
+}
+
+@media (max-width: 768px) {
+  .about-favorites {
+    flex-direction: column;
+    gap: 2rem;
+    padding-top: 1.5rem;
+  }
+
+  .favorites-row {
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; 
+    -ms-overflow-style: none;
+  }
+  
+  .favorites-row::-webkit-scrollbar { 
+    display: none; 
+  }
+
+  .favorite-item {
+    flex-shrink: 0;
   }
 }
