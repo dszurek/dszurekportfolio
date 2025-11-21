@@ -1,6 +1,6 @@
-# 🚗 Daniel Szurek — Software Engineer Portfolio
+# 🚗 Daniel Szurek — Portfolio
 
-[Website (live)](https://your-site.netlify.app) • [LinkedIn](https://www.linkedin.com/in/danielszurek) • [GitHub](https://github.com/dszurek)
+[Website (live)](https://www.danielszurek.com) • [LinkedIn](https://www.linkedin.com/in/danielszurek) • [GitHub](https://github.com/dszurek)
 
 ---
 
