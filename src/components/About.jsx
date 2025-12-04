@@ -1,8 +1,9 @@
 import React, { useRef } from "react";
 import { motion, useTransform, useScroll } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { FaHeart, FaCode, FaPalette, FaRocket } from "react-icons/fa";
+import { FaHeart, FaCode, FaPalette, FaRocket, FaDownload } from "react-icons/fa";
 import headshotImg from "../images/headshot.jpg";
+import resumePdf from "../other/Resume.pdf";
 import "./About.css";
 
 const About = () => {
@@ -177,6 +178,17 @@ const About = () => {
                 Dune series). Feel free to send me any song or book
                 recommendations in the contact section!
               </p>
+
+              <motion.a
+                href={resumePdf}
+                download="Daniel_Szurek_Resume.pdf"
+                className="resume-button"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <FaDownload className="resume-icon" />
+                Download Resume
+              </motion.a>
 
               <div className="favorites-divider"></div>
 

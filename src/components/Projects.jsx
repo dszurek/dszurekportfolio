@@ -8,6 +8,7 @@ import {
   FaNodeJs,
   FaPython,
   FaDatabase,
+  FaAppStore,
 } from "react-icons/fa";
 import cavSysImg from "../images/CAVSys_example.png";
 import voiceAssistantImg from "../images/voiceassistant.jpg";
@@ -16,6 +17,7 @@ import mapsImg from "../images/mapsapplication.jpg";
 import claimImg from "../images/claim_management.webp";
 import ssabImg from "../images/ssab_project.jpg";
 import "./Projects.css";
+import budgieImg from "../images/budgie_light.png";
 
 const Projects = () => {
   const [ref, inView] = useInView({
@@ -139,6 +141,26 @@ const Projects = () => {
       github: null,
       live: null,
     },
+    // {
+    //   id: 7,
+    //   title: "Budgie: Smart Expense Planning",
+    //   category: "mobile",
+    //   description:
+    //     "Built a budgeting application for iOS with sporadic student income in mind. Features a custom constraint-based scheduling algorithm that predicts the most optimal date to purchase wish list items based on income and expenses. ",
+    //   technologies: [
+    //     "Swift",
+    //     "iOS Development",
+    //     "XCode",
+    //     "Algorithm Design",
+    //     "Constraint-Based Scheduling",
+    //   ],
+    //   icons: [<FaDatabase />, <FaPython />, <FaReact />],
+    //   image: budgieImg,
+    //   imageAlt: "Budgie: Smart Expense Planning",
+    //   github: "https://github.com/dszurek/Budgie",
+    //   live: null,
+    //   appStore: "https://apps.apple.com/us/app/budgie-smart-expense-planning/id6467645898",
+    // },
   ];
 
   const categories = [
@@ -259,6 +281,18 @@ const Projects = () => {
                         <FaExternalLinkAlt />
                       </motion.a>
                     )}
+                    {project.appStore && (
+                      <motion.a
+                        href={project.appStore}
+                        className="project-link"
+                        whileHover={{ scale: 1.1 }}
+                        onClick={(e) => e.stopPropagation()}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <FaAppStore />
+                      </motion.a>
+                    )}
                   </div>
                 </div>
               </motion.div>
@@ -325,6 +359,16 @@ const Projects = () => {
                       rel="noopener noreferrer"
                     >
                       <FaExternalLinkAlt /> Live Demo
+                    </a>
+                  )}
+                  {selectedProject.appStore && (
+                    <a
+                      href={selectedProject.appStore}
+                      className="modal-button primary"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <FaAppStore /> App Store
                     </a>
                   )}
                 </div>
