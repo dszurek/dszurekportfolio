@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import ReactGA from 'react-ga4';
 import {
   FaEnvelope,
   FaGithub,
@@ -51,12 +52,27 @@ const Contact = () => {
       if (response.ok) {
         setSubmitStatus("success");
         setFormData({ name: "", email: "", subject: "", message: "" });
+        ReactGA.event({
+          category: 'Contact',
+          action: 'Submit',
+          label: 'Contact Form Success',
+        });
       } else {
         setSubmitStatus("error");
+        ReactGA.event({
+          category: 'Contact',
+          action: 'Submit',
+          label: 'Contact Form Error',
+        });
       }
     } catch (error) {
       console.error("Form submission error:", error);
       setSubmitStatus("error");
+      ReactGA.event({
+        category: 'Contact',
+        action: 'Submit',
+        label: 'Contact Form Exception',
+      });
     } finally {
       setIsSubmitting(false);
       setTimeout(() => {
@@ -125,7 +141,14 @@ const Contact = () => {
                   <FaEnvelope className="detail-icon" />
                   <div>
                     <h4>Email</h4>
-                    <a href="mailto:djszurek@crimson.ua.edu">
+                    <a 
+                      href="mailto:djszurek@crimson.ua.edu"
+                      onClick={() => ReactGA.event({
+                        category: 'Contact',
+                        action: 'Click',
+                        label: 'Email Link',
+                      })}
+                    >
                       djszurek@crimson.ua.edu
                     </a>
                   </div>
@@ -151,6 +174,11 @@ const Contact = () => {
                       transition={{ duration: 0.4, delay: 0.4 + index * 0.1 }}
                       whileHover={{ scale: 1.1, y: -5 }}
                       whileTap={{ scale: 0.95 }}
+                      onClick={() => ReactGA.event({
+                        category: 'Social',
+                        action: 'Click',
+                        label: social.name,
+                      })}
                     >
                       <span className="social-icon">{social.icon}</span>
                       <span className="social-name">{social.name}</span>

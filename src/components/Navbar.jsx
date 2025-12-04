@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import "./Navbar.css";
 
+import ReactGA from 'react-ga4';
+
 const Navbar = ({ scrollY }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -19,6 +21,15 @@ const Navbar = ({ scrollY }) => {
     { name: "Contact", href: "#contact" },
   ];
 
+  const handleNavClick = (itemName) => {
+    ReactGA.event({
+      category: 'Navigation',
+      action: 'Click',
+      label: itemName,
+    });
+    setIsMobileMenuOpen(false);
+  };
+
   return (
     <motion.nav
       className={`navbar ${isScrolled ? "scrolled" : ""} ${
@@ -34,6 +45,11 @@ const Navbar = ({ scrollY }) => {
           className="navbar-logo"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
+          onClick={() => ReactGA.event({
+            category: 'Navigation',
+            action: 'Click',
+            label: 'Logo',
+          })}
         >
           <span className="logo-text">DS</span>
         </motion.a>
@@ -48,6 +64,11 @@ const Navbar = ({ scrollY }) => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1, duration: 0.5 }}
               whileHover={{ y: -2 }}
+              onClick={() => ReactGA.event({
+                category: 'Navigation',
+                action: 'Click',
+                label: item.name,
+              })}
             >
               {item.name}
             </motion.a>
@@ -84,7 +105,7 @@ const Navbar = ({ scrollY }) => {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: index * 0.05 }}
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={() => handleNavClick(item.name)}
               >
                 {item.name}
               </motion.a>

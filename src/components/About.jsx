@@ -4,6 +4,7 @@ import { useInView } from "react-intersection-observer";
 import { FaHeart, FaCode, FaPalette, FaRocket, FaDownload } from "react-icons/fa";
 import headshotImg from "../images/headshot.jpg";
 import resumePdf from "../other/Resume.pdf";
+import ReactGA from 'react-ga4';
 import "./About.css";
 
 const About = () => {
@@ -185,6 +186,11 @@ const About = () => {
                 className="resume-button"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+                onClick={() => ReactGA.event({
+                  category: 'Resume',
+                  action: 'Download',
+                  label: 'Resume Download',
+                })}
               >
                 <FaDownload className="resume-icon" />
                 Download Resume

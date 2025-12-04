@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import ReactGA from 'react-ga4';
 import "./Hero.css";
 
 const Hero = ({ scrollY }) => {
@@ -63,6 +64,11 @@ const Hero = ({ scrollY }) => {
               boxShadow: "0 10px 40px rgba(139, 90, 60, 0.4)",
             }}
             whileTap={{ scale: 0.95 }}
+            onClick={() => ReactGA.event({
+              category: 'User Interaction',
+              action: 'Click',
+              label: 'Hero - View My Work',
+            })}
           >
             View My Work
           </motion.a>
@@ -71,6 +77,11 @@ const Hero = ({ scrollY }) => {
             className="cta-button secondary"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            onClick={() => ReactGA.event({
+              category: 'User Interaction',
+              action: 'Click',
+              label: 'Hero - Get In Touch',
+            })}
           >
             Get In Touch
           </motion.a>

@@ -16,6 +16,7 @@ import lrfrImg from "../images/lrfr.png";
 import mapsImg from "../images/mapsapplication.jpg";
 import claimImg from "../images/claim_management.webp";
 import ssabImg from "../images/ssab_project.jpg";
+import ReactGA from 'react-ga4';
 import "./Projects.css";
 import budgieImg from "../images/budgie_light.png";
 
@@ -27,6 +28,33 @@ const Projects = () => {
 
   const [selectedProject, setSelectedProject] = useState(null);
   const [filter, setFilter] = useState("all");
+
+  const handleFilterClick = (categoryId) => {
+    setFilter(categoryId);
+    ReactGA.event({
+      category: 'Projects',
+      action: 'Filter',
+      label: categoryId,
+    });
+  };
+
+  const handleProjectClick = (project) => {
+    setSelectedProject(project);
+    ReactGA.event({
+      category: 'Projects',
+      action: 'View Details',
+      label: project.title,
+    });
+  };
+
+  const handleExternalLinkClick = (e, type, projectTitle) => {
+    e.stopPropagation();
+    ReactGA.event({
+      category: 'External Link',
+      action: 'Click',
+      label: `${type} - ${projectTitle}`,
+    });
+  };
 
   const projects = [
     {
@@ -204,7 +232,7 @@ const Projects = () => {
               className={`filter-button ${
                 filter === category.id ? "active" : ""
               }`}
-              onClick={() => setFilter(category.id)}
+              onClick={() => handleFilterClick(category.id)}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -225,7 +253,7 @@ const Projects = () => {
                 exit={{ opacity: 0, scale: 0.8 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 whileHover={{ y: -10 }}
-                onClick={() => setSelectedProject(project)}
+                onClick={() => handleProjectClick(project)}
               >
                 <div className="project-image">
                   <img
@@ -262,7 +290,7 @@ const Projects = () => {
                         href={project.github}
                         className="project-link"
                         whileHover={{ scale: 1.1 }}
-                        onClick={(e) => e.stopPropagation()}
+                        onClick={(e) => handleExternalLinkClick(e, 'GitHub', project.title)}
                         target="_blank"
                         rel="noopener noreferrer"
                       >
@@ -274,7 +302,7 @@ const Projects = () => {
                         href={project.live}
                         className="project-link"
                         whileHover={{ scale: 1.1 }}
-                        onClick={(e) => e.stopPropagation()}
+                        onClick={(e) => handleExternalLinkClick(e, 'Live Demo', project.title)}
                         target="_blank"
                         rel="noopener noreferrer"
                       >
@@ -286,7 +314,7 @@ const Projects = () => {
                         href={project.appStore}
                         className="project-link"
                         whileHover={{ scale: 1.1 }}
-                        onClick={(e) => e.stopPropagation()}
+                        onClick={(e) => handleExternalLinkClick(e, 'App Store', project.title)}
                         target="_blank"
                         rel="noopener noreferrer"
                       >
@@ -347,6 +375,7 @@ const Projects = () => {
                       className="modal-button"
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={(e) => handleExternalLinkClick(e, 'GitHub', selectedProject.title)}
                     >
                       <FaGithub /> View Code
                     </a>
@@ -357,6 +386,7 @@ const Projects = () => {
                       className="modal-button primary"
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={(e) => handleExternalLinkClick(e, 'Live Demo', selectedProject.title)}
                     >
                       <FaExternalLinkAlt /> Live Demo
                     </a>
@@ -367,6 +397,7 @@ const Projects = () => {
                       className="modal-button primary"
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={(e) => handleExternalLinkClick(e, 'App Store', selectedProject.title)}
                     >
                       <FaAppStore /> App Store
                     </a>

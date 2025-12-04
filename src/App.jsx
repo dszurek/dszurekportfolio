@@ -7,11 +7,13 @@ import Experience from "./components/Experience";
 import Education from "./components/Education";
 import Contact from "./components/Contact";
 import AnimatedBackground from "./components/AnimatedBackground";
+import ReactGA from 'react-ga4';
 import "./App.css";
+
+ReactGA.initialize('G-ZM8WYZKD3L');
 
 function App() {
   const [scrollY, setScrollY] = useState(0);
-
   useEffect(() => {
     const handleScroll = () => {
       setScrollY(window.scrollY);
