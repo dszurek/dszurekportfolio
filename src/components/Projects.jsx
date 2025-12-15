@@ -169,26 +169,26 @@ const Projects = () => {
       github: null,
       live: null,
     },
-    // {
-    //   id: 7,
-    //   title: "Budgie: Smart Expense Planning",
-    //   category: "mobile",
-    //   description:
-    //     "Built a budgeting application for iOS with sporadic student income in mind. Features a custom constraint-based scheduling algorithm that predicts the most optimal date to purchase wish list items based on income and expenses. ",
-    //   technologies: [
-    //     "Swift",
-    //     "iOS Development",
-    //     "XCode",
-    //     "Algorithm Design",
-    //     "Constraint-Based Scheduling",
-    //   ],
-    //   icons: [<FaDatabase />, <FaPython />, <FaReact />],
-    //   image: budgieImg,
-    //   imageAlt: "Budgie: Smart Expense Planning",
-    //   github: "https://github.com/dszurek/Budgie",
-    //   live: null,
-    //   appStore: "https://apps.apple.com/us/app/budgie-smart-expense-planning/id6467645898",
-    // },
+    {
+      id: 7,
+      title: "Budgie: Smart Expense Planning",
+      category: "mobile",
+      description:
+        "Built a budgeting application for iOS with sporadic student income in mind. Features a custom constraint-based scheduling algorithm that predicts the most optimal date to purchase wish list items based on income and expenses. ",
+      technologies: [
+        "Swift",
+        "iOS Development",
+        "XCode",
+        "Algorithm Design",
+        "Constraint-Based Scheduling",
+      ],
+      icons: [<FaDatabase />, <FaPython />, <FaReact />],
+      image: budgieImg,
+      imageAlt: "Budgie: Smart Expense Planning",
+      github: "https://github.com/dszurek/Budgie",
+      live: null,
+      appStore: "https://apps.apple.com/us/app/budgie-smart-expense-planning/id6755897739",
+    },
   ];
 
   const categories = [
