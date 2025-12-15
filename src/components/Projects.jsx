@@ -4,21 +4,33 @@ import { useInView } from "react-intersection-observer";
 import {
   FaGithub,
   FaExternalLinkAlt,
-  FaReact,
-  FaNodeJs,
   FaPython,
-  FaDatabase,
+  FaSwift,
+  FaApple,
+  FaCar,
+  FaLinux,
+  FaMicrochip,
+  FaAndroid,
   FaAppStore,
 } from "react-icons/fa";
+import {
+  SiFlutter,
+  SiDart,
+  SiPytorch,
+  SiOpencv,
+  SiScala,
+  SiC,
+} from "react-icons/si";
+
 import cavSysImg from "../images/CAVSys_example.png";
 import voiceAssistantImg from "../images/voiceassistant.jpg";
 import lrfrImg from "../images/lrfr.png";
 import mapsImg from "../images/mapsapplication.jpg";
-import claimImg from "../images/claim_management.webp";
-import ssabImg from "../images/ssab_project.jpg";
 import ReactGA from 'react-ga4';
 import "./Projects.css";
 import budgieImg from "../images/budgie_light.png";
+import lispImg from "../images/lisp.png";
+import scaloxImg from "../images/scalox.png";
 
 const Projects = () => {
   const [ref, inView] = useInView({
@@ -73,7 +85,7 @@ const Projects = () => {
         "CAN Bus Communication",
         "ADAS",
       ],
-      icons: [<FaPython />, <FaDatabase />, <FaNodeJs />],
+      icons: [<FaCar />, <FaPython />, <SiC />, <FaLinux />],
       image: cavSysImg,
       imageAlt: "EcoCAR CAV System",
       github: null,
@@ -92,7 +104,7 @@ const Projects = () => {
         "Edge AI",
         "NXP NavQ+ Mission Computer",
       ],
-      icons: [<FaPython />, <FaReact />, <FaNodeJs />],
+      icons: [<FaMicrochip />, <FaLinux />, <FaPython />],
       image: voiceAssistantImg,
       imageAlt: "Voice Assistant",
       github: "https://github.com/dszurek/voice_assistant",
@@ -105,7 +117,7 @@ const Projects = () => {
       description:
         "Developed a unique CNN pipeline for facial recognition by feeding DSR (Deep Super-Resolution) upscaled low-resolution images to a fine-tuned and quantized EdgeFace model. Achieved >90% accuracy on low-quality surveillance images. Course project demonstrating computer vision and model optimization skills.",
       technologies: ["Python", "PyTorch", "OpenCV", "CNN", "Deep Learning"],
-      icons: [<FaPython />, <FaDatabase />, <FaReact />],
+      icons: [<FaPython />, <SiPytorch />, <SiOpencv />],
       image: lrfrImg,
       imageAlt: "Facial Recognition Pipeline",
       github: "https://www.github.com/dszurek/LRFR-Project",
@@ -125,7 +137,7 @@ const Projects = () => {
         "Google Places API",
         "Docker",
       ],
-      icons: [<FaReact />, <FaNodeJs />, <FaDatabase />],
+      icons: [<SiFlutter />, <SiDart />, <FaAndroid />],
       image: mapsImg,
       imageAlt: "Flutter Maps Application",
       github: "https://github.com/dszurek/flutterMapsApp",
@@ -133,44 +145,6 @@ const Projects = () => {
     },
     {
       id: 5,
-      title: "Insurance Claim Management System",
-      category: "enterprise",
-      description:
-        "Designed and deployed a database-driven application using Microsoft Power Platform (Power Apps, Power Automate) to replace manual Excel workflows at Brasfield & Gorrie. Automated reporting pipelines, improving data visualization for leadership and reducing manual processing time significantly.",
-      technologies: [
-        "Power Apps",
-        "Power Automate",
-        "SQL",
-        "Azure Databricks",
-        "Power BI",
-      ],
-      icons: [<FaDatabase />, <FaNodeJs />, <FaPython />],
-      image: claimImg,
-      imageAlt: "Claim Management System",
-      github: null,
-      live: null,
-    },
-    {
-      id: 6,
-      title: "Enterprise Data Analytics Dashboard Portfolio",
-      category: "enterprise",
-      description:
-        "Built comprehensive Power BI portfolio at SSAB consolidating financial project reporting, automating a multi-year backlog in under a month. Developed Tableau cost-comparison dashboards and Grafana real-time monitoring for mill metrics using live datasets with 10,000+ records. Presented insights to senior management and international colleagues.",
-      technologies: [
-        "Power BI",
-        "Tableau",
-        "Grafana",
-        "SQL",
-        "Azure Data Factory",
-      ],
-      icons: [<FaDatabase />, <FaPython />, <FaReact />],
-      image: ssabImg,
-      imageAlt: "Enterprise Analytics Dashboard",
-      github: null,
-      live: null,
-    },
-    {
-      id: 7,
       title: "Budgie: Smart Expense Planning",
       category: "mobile",
       description:
@@ -182,13 +156,37 @@ const Projects = () => {
         "Algorithm Design",
         "Constraint-Based Scheduling",
       ],
-      icons: [<FaDatabase />, <FaPython />, <FaReact />],
+      icons: [<FaSwift />, <FaApple />],
       image: budgieImg,
       imageAlt: "Budgie: Smart Expense Planning",
       github: "https://github.com/dszurek/Budgie",
       live: null,
       appStore: "https://apps.apple.com/us/app/budgie-smart-expense-planning/id6755897739",
     },
+    {
+      id: 6,
+      title: "Lisp Interpreter",
+      category: "foundation",
+      description: "A lightweight, feature-rich Lisp interpreter written in C. Implements a functional Lisp interpreter capable of parsing and evaluating S-expressions. It supports core Lisp features including dynamic typing, first-class functions (closures), recursion, and lexical scoping. It is designed to be a clean and understandable implementation of the fundamentals of language interpretation. This project was done for a course taken at the University of Alabama.",
+      technologies: ["C", "Lisp", "Interpreter", "Parsing", "Evaluation"],
+      icons: [<SiC />],
+      image: lispImg,
+      imageAlt: "Lisp Interpreter",
+      github: "https://github.com/dszurek/lisp",
+      live: null,
+    },
+    {
+      id: 7,
+      title: "Scalox",
+      category: "foundation",
+      description: "A Scala implementation of the Lox interpreter from the first 13 chapters of the book Crafting Interpreters by Robert Nystrom, done for a course taken at the University of Alabama. It is a tree-walk interpreter that supports the full Lox language.",
+      technologies: ["Scala", "Lox", "Interpreter", "Parsing", "Evaluation"],
+      icons: [<SiScala />],
+      image: scaloxImg,
+      imageAlt: "Scalox: Lox Interpreter",
+      github: "https://github.com/dszurek/scalox",
+      live: null,
+    }
   ];
 
   const categories = [
@@ -196,7 +194,7 @@ const Projects = () => {
     { id: "automotive", label: "Autonomous Vehicles" },
     { id: "ai", label: "AI & ML" },
     { id: "mobile", label: "Mobile" },
-    { id: "enterprise", label: "Enterprise" },
+    { id: "foundation", label: "Foundational" },
   ];
 
   const filteredProjects =
